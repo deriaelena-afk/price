@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Прайс на послуги — Бухгалтер для ФОП</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --ink: #1a1a2e;
+    --ink-soft: #4a4a6a;
+    --bg: #f7f6f2;
+    --card: #ffffff;
+    --accent: #2d5be3;
+    --accent-light: #e8eefb;
+    --line: #e2e0d8;
+    --green: #1a7a4a;
+    --green-bg: #eaf5ef;
+    --gold: #c07a18;
+    --gold-bg: #fdf4e3;
+    --gold-dark: #c07a18;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--ink);
+    color: #fff;
+    padding: 80px 24px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 70% 10%, rgba(45,91,227,0.25) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 60% at 10% 80%, rgba(232,93,38,0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .hero h1 span { color: #6b9fff; }
+  .hero p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    margin: 0 auto 36px;
+    font-weight: 300;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin: 32px 0;
+  }
+  .hero-stat-num {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .hero-stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 2px;
+  }
+  .cta-section {
+    background: var(--ink);
+    padding: 56px 24px;
+    text-align: center;
+  }
+  .cta-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .cta-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 32px;
+  }
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 24px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .cta-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+  .cta-btn-ig { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366); color: #fff; }
+  .cta-btn-tg { background: #2aabee; color: #fff; }
+  .cta-btn-tel { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    padding: 10px 20px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    backdrop-filter: blur(4px);
+  }
+
+  /* FREE BANNER */
+  .free-banner {
+    background: var(--green-bg);
+    border-bottom: 1px solid #b8e0ca;
+    padding: 14px 24px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--green);
+    font-weight: 500;
+  }
+  .free-banner strong { font-weight: 700; }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .section { padding: 60px 0 20px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .section-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .icon-blue { background: var(--accent-light); }
+  .icon-orange { background: #fdeee8; }
+  .icon-green { background: var(--green-bg); }
+  .icon-gold { background: var(--gold-bg); }
+
+  .section-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .section-subtitle {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+  .divider {
+    height: 1px;
+    background: var(--line);
+    margin-bottom: 32px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid var(--line);
+    transition: box-shadow 0.2s, transform 0.2s;
+    position: relative;
+  }
+  .card:hover {
+    box-shadow: 0 8px 32px rgba(27,43,94,0.1);
+    transform: translateY(-2px);
+  }
+  .card-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .card-name {
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-bottom: 18px;
+  }
+  .card-price {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .card-price .currency {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    color: var(--ink-soft);
+  }
+  .card-price-note {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+
+  .badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--ink);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+  .badge-green { background: var(--green); }
+  .badge-gold { background: var(--gold); color: var(--ink); }
+
+  .card-full {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid var(--line);
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .card-full .card-name { font-size: 18px; margin-bottom: 10px; }
+
+  .includes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 8px;
+    margin: 14px 0;
+  }
+  .include-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+  .include-item::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  .plans {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .plan {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 22px 20px;
+    border: 1px solid var(--line);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .plan:hover {
+    box-shadow: 0 8px 24px rgba(27,43,94,0.1);
+    transform: translateY(-2px);
+  }
+  .plan.featured {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, #f0f4ff 0%, #fff 100%);
+  }
+  .plan-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .plan-name {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 14px;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .plan-price {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .plan-price .per {
+    font-size: 13px;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    color: var(--ink-soft);
+  }
+
+  .monthly-includes {
+    background: linear-gradient(135deg, #e8eefb 0%, #f7f6f2 100%);
+    border-radius: 16px;
+    padding: 28px;
+    margin-top: 8px;
+    border: 1px solid #c5d6f8;
+  }
+  .monthly-includes h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+
+  .service-list { display: flex; flex-direction: column; gap: 10px; }
+  .service-row {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 18px 22px;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    transition: box-shadow 0.15s;
+  }
+  .service-row:hover { box-shadow: 0 4px 16px rgba(27,43,94,0.07); }
+  .service-info { flex: 1; }
+  .service-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .service-desc {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .service-price {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .service-price small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+
+  .footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.55);
+    text-align: center;
+    padding: 40px 24px;
+    margin-top: 80px;
+    font-size: 13px;
+  }
+  .footer strong { color: #fff; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 20px 48px; }
+    .service-row { flex-direction: column; }
+    .service-price { text-align: left; }
+    .plans { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <p class="hero-eyebrow">Послуги для підприємців</p>
+  <h1>Бухгалтер для <span>вашого ФОП</span></h1>
+  <p>Реєстрація, супровід, звітність та консультації — повний спектр послуг для спокійного ведення бізнесу</p>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">12+</div>
+      <div class="hero-stat-label">років практики</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">150+</div>
+      <div class="hero-stat-label">клієнтів</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">200+</div>
+      <div class="hero-stat-label">годин консультацій</div>
+    </div>
+  </div>
+  <div class="hero-badge">✦ Онлайн — по всій Україні та за кордоном · Офлайн — м. Суми</div>
+</div>
+
+<div class="free-banner">
+  🎁 <strong>Безкоштовно:</strong> перша консультація перед відкриттям ФОП — допоможу обрати групу, систему оподаткування та КВЕДи
+</div>
+
+<div class="container">
+
+  <!-- КОНСУЛЬТАЦІЇ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-blue">💬</div>
+      <div>
+        <div class="section-title">Консультації</div>
+        <div class="section-subtitle">Онлайн або офлайн — розбираємо вашу ситуацію індивідуально</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="cards">
+      <div class="card">
+        <div class="badge badge-green">Безкоштовно</div>
+        <div class="card-label">Стартова</div>
+        <div class="card-name">Консультація перед відкриттям ФОП</div>
+        <div class="card-desc">Допоможу обрати оптимальну групу та систему оподаткування, підібрати КВЕДи під вашу діяльність</div>
+        <div class="card-price">0 <span class="currency">грн</span></div>
+      </div>
+      <div class="card" style="grid-column: span 2;">
+        <div class="card-label">Онлайн або офлайн (Google Meet)</div>
+        <div class="card-name">Індивідуальна консультація з питань ФОП та оподаткування</div>
+        <div class="card-desc">Консультую за попереднім запитом — розбираємо вашу ситуацію: оподаткування, ліміти, звітність, штрафи, перевірки та оптимізація податків</div>
+        <div style="display:flex; gap:32px; flex-wrap:wrap; margin-top:8px;">
+          <div>
+            <div class="card-price">800 <span class="currency">грн</span></div>
+            <div class="card-price-note">до 30 хвилин</div>
+          </div>
+          <div>
+            <div class="card-price">1 500 <span class="currency">грн</span></div>
+            <div class="card-price-note">до 1 години</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- РЕЄСТРАЦІЯ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-orange">📋</div>
+      <div>
+        <div class="section-title">Реєстрація та зміни ФОП</div>
+        <div class="section-subtitle">Від відкриття до закриття — беру на себе всі клопоти з державними органами</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="card-full">
+      <div class="badge badge-gold">Популярне</div>
+      <div class="card-label">Реєстрація</div>
+      <div class="card-name">Відкриття ФОП — «під ключ»</div>
+      <div class="card-desc" style="max-width:560px;">Повний супровід реєстрації: від вибору системи оподаткування до отримання всіх необхідних документів. Ви отримуєте готовий до роботи ФОП без жодного зайвого кроку з вашого боку</div>
+      <div class="includes-grid">
+        <div class="include-item">Підбір КВЕДів під вашу діяльність</div>
+        <div class="include-item">Вибір оптимальної групи та системи оподаткування</div>
+        <div class="include-item">Допомога у створенні КЕП (електронного підпису)</div>
+        <div class="include-item">Подання заяви на реєстрацію ФОП</div>
+        <div class="include-item">Отримання витягу про держреєстрацію</div>
+        <div class="include-item">Отримання витягу платника єдиного податку</div>
+        <div class="include-item">Консультація щодо відкриття підприємницького рахунку</div>
+        <div class="include-item">Індивідуальна рекомендація щодо вибору банку та ПРРО під вашу діяльність</div>
+        <div class="include-item">Рекомендації з ведення бізнесу та обліку доходів</div>
+        <div class="include-item">Шаблон книги обліку доходів</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap; margin-top:8px;">
+        <div>
+          <div class="card-price">2 500 <span class="currency">грн</span></div>
+          <div class="card-price-note">Реєстрація ФОП</div>
+        </div>
+        <div style="color: var(--ink-soft); font-size: 18px;">+</div>
+        <div>
+          <div class="card-price" style="color: var(--ink-soft); font-size:18px;">1 000 <span class="currency" style="font-size:13px;">грн</span></div>
+          <div class="card-price-note">додатково за реєстрацію ПРРО</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">Реєстрація касового апарату</div>
+        <div class="card-name">Реєстрація ПРРО (окремо)</div>
+        <div class="card-desc">Реєструю програмний касовий апарат та пояснюю базові моменти касової дисципліни: як правильно відкривати і закривати зміну, проводити повернення та уникати помилок при фіскалізації</div>
+        <div class="card-price">1 500 <span class="currency">грн</span></div>
+      </div>
+      <div class="card">
+        <div class="card-label">Закриття</div>
+        <div class="card-name">Ліквідація ФОП</div>
+        <div class="card-desc">Подання заяви на закриття, ліквідаційна звітність, закриття підприємницьких рахунків, аудит електронного кабінету перед закриттям</div>
+        <div class="card-price">2 500 <span class="currency">грн</span></div>
+        <div class="card-price-note">+ від 1 000 грн за повернення переплат</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Соціальні виплати</div>
+        <div class="card-name">Оформлення декретних виплат для ФОП</div>
+        <div class="card-desc">Підготовка та подання всіх необхідних документів для отримання допомоги по вагітності та пологах — для ФОП на єдиному податку</div>
+        <div class="card-price">2 500 <span class="currency">грн</span></div>
+      </div>
+    </div>
+
+    <div class="card-full" style="margin-top:16px;">
+      <div class="card-label">Перевірка та аналіз</div>
+      <div class="card-name">Аудит електронного кабінету ФОП</div>
+      <div class="card-desc">Перевіряю стан розрахунків з бюджетом, статус платника єдиного податку, коректність даних та звітності. За результатами — письмовий звіт з планом дій</div>
+      <div class="card-price" style="margin-top:10px;">1 000 <span class="currency">грн</span></div>
+    </div>
+  </div>
+
+  <!-- ЩОМІСЯЧНИЙ СУПРОВІД -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-green">📅</div>
+      <div>
+        <div class="section-title">Щомісячний супровід ФОП</div>
+        <div class="section-subtitle">Повний бухгалтерський супровід за фіксованою ціною</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="plans">
+      <div class="plan">
+        <div class="plan-tag">Єдиний податок</div>
+        <div class="plan-name">ФОП 1–2 група</div>
+        <div class="plan-price">1 000 <span class="per">/міс</span></div>
+      </div>
+      <div class="plan featured">
+        <div class="plan-tag">З касовим апаратом</div>
+        <div class="plan-name">ФОП 1–2 група + ПРРО</div>
+        <div class="plan-price">2 000 <span class="per">/міс</span></div>
+      </div>
+      <div class="plan">
+        <div class="plan-tag">3 група ЄП</div>
+        <div class="plan-name">ФОП 3 група</div>
+        <div class="plan-price">1 500 <span class="per">/міс</span></div>
+      </div>
+      <div class="plan featured">
+        <div class="plan-tag">З касовим апаратом</div>
+        <div class="plan-name">ФОП 3 група + ПРРО</div>
+        <div class="plan-price">2 500 <span class="per">/міс</span></div>
+      </div>
+      <div class="plan">
+        <div class="plan-tag">Загальна система</div>
+        <div class="plan-name">ФОП загальна система</div>
+        <div class="plan-price">від 2 000 <span class="per">/міс</span></div>
+      </div>
+    </div>
+
+    <div class="monthly-includes">
+      <h3>📌 Що входить у щомісячний супровід</h3>
+      <div class="includes-grid">
+        <div class="include-item">Сплата податків та ЄСВ вчасно і в правильному розмірі</div>
+        <div class="include-item">Контроль стану розрахунків з бюджетом</div>
+        <div class="include-item">Моніторинг лімітів доходу ФОП</div>
+        <div class="include-item">Заповнення книги обліку доходів</div>
+        <div class="include-item">Аналіз банківської виписки на ризикові операції</div>
+        <div class="include-item">Консультації з усіх питань ведення ФОП</div>
+        <div class="include-item">Оформлення заяв до податкової</div>
+        <div class="include-item">Допомога у проходженні фінансового моніторингу</div>
+        <div class="include-item">Комунікація з державними органами від вашого імені</div>
+        <div class="include-item">Розроблення шаблонів актів та накладних</div>
+        <div class="include-item">Періодична звірка касових чеків з виявленням помилок — за погодженою частотою. Допомога по запиту: сумнівні операції, пропущені чеки, оформлення та проведення повернень</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- РАЗОВІ ПОСЛУГИ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-gold">📄</div>
+      <div>
+        <div class="section-title">Разові послуги</div>
+        <div class="section-subtitle">Звітність, заяви та інші задачі — разово, без зобов'язань</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="service-list">
+
+      <div class="service-row">
+        <div class="service-info">
+          <div class="service-name">Річна звітність ФОП 1–2 групи</div>
+          <div class="service-desc">Подача річної декларації, аудит електронного кабінету, перевірка книги обліку доходів</div>
+        </div>
+        <div class="service-price">2 500 грн<small>+ 1 000 грн при наявності ПРРО</small></div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-info">
+          <div class="service-name">Квартальна звітність ФОП 3 групи</div>
+          <div class="service-desc">Підготовка та подача квартальної декларації платника єдиного податку</div>
+        </div>
+        <div class="service-price">2 000 грн<small>+ 1 000 грн при наявності ПРРО</small></div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-info">
+          <div class="service-name">Декларація про майновий стан та доходи</div>
+          <div class="service-desc">Для фізичних осіб з інвестиційним доходом (Interactive Brokers, Freedom Finance тощо), ФОП 1–2 групи за період перебування на загальній системі, а також ФОП на загальній системі оподаткування</div>
+        </div>
+        <div class="service-price">2 000 грн</div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-info">
+          <div class="service-name">Нульова звітність</div>
+          <div class="service-desc">Якщо у звітному періоді не було діяльності — звітність все одно потрібно подати. Для всіх груп та систем оподаткування</div>
+        </div>
+        <div class="service-price">1 000 грн</div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-info">
+          <div class="service-name">Внесення змін до реєстраційних даних ФОП</div>
+          <div class="service-desc">Зміна КВЕДів, місця провадження діяльності, податкової адреси, ПІБ або контактів, зміна групи чи системи оподаткування — з отриманням повторних витягів з реєстрів</div>
+        </div>
+        <div class="service-price">1 000 грн</div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-info">
+          <div class="service-name">Подання заяви на повернення переплати</div>
+          <div class="service-desc">Підготовка та подача заяви до ДПС на повернення надміру сплачених податків або ЄСВ</div>
+        </div>
+        <div class="service-price">від 1 000 грн</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="cta-section">
+  <div class="cta-title">Готові розпочати?</div>
+  <div class="cta-sub">Перша консультація перед відкриттям ФОП — безкоштовно</div>
+  <div class="cta-buttons">
+    <a class="cta-btn cta-btn-ig" href="https://www.instagram.com/alena.deria?igsh=cjQzZGw1NHVkMzYz&utm_source=qr" target="_blank">📸 Instagram</a>
+    <a class="cta-btn cta-btn-tg" href="https://t.me/alenaderia" target="_blank">✈️ Telegram</a>
+    <a class="cta-btn cta-btn-tel" href="tel:+380500889244">📞 050 088 92 44</a>
+  </div>
+  <p style="margin-top:32px; font-size:12px; color:rgba(255,255,255,0.3);">Усі ціни вказані в гривнях · Вартість послуг фіксована — без прихованих платежів</p>
+</div>
+
+</body>
+</html>
